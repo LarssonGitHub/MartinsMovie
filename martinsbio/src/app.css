@@ -1,0 +1,16 @@
+.listingContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.borders { 
+    transition: all .2s ease-in-out; 
+    border: 2px black solid;
+    background-color: white;
+    }
+    
+    .borders:hover { 
+    transform: scale(1.3); 
+    }

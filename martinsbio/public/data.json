@@ -1,0 +1,64 @@
+[
+        {
+            "id": 1,
+            "movieName": "Pokemon The First Movie",
+            "runtime": "90min",
+            "img": "./assets/pokemon_poster.jpeg",
+            "date": "2021-09-01",
+            "time": "11:30",
+            "seats": "TBA"
+        },
+        {
+            "id": 2,
+            "movieName": "Castle in the sky",
+            "runtime": "85min",
+            "img": "./assets/Castle_in_the_Sky.jpeg",
+            "date": "2021-09-02",
+            "time": "11:30",
+            "seats": "TBA"
+        },
+        {
+            "id": 3,
+            "movieName": "Die hard",
+            "runtime": "120min",
+            "img": "./assets/die_hard.jpeg",
+            "date": "2021-09-02",
+            "time": "11:30",
+            "seats": "TBA"
+        },
+        {
+            "id": 4,
+            "movieName": "Forest Gump",
+            "runtime": "20min",
+            "img": "",
+            "date": "2021-09-03",
+            "time": "11:30",
+            "seats": "TBA"
+        },
+        {"id": 5,
+            "movieName": "Pokemon The First Movie",
+            "runtime": "90min",
+            "img": "./assets/pokemon_poster.jpeg",
+            "date": "2021-09-03",
+            "time": "11:30",
+            "seats": "TBA"
+        },
+        {
+            "id": 6,
+            "movieName": "Castle in the sky",
+            "runtime": "85min",
+            "img": "./assets/Castle_in_the_Sky.jpeg",
+            "date": "2021-09-01",
+            "time": "11:30",
+            "seats": "TBA"
+        },
+        {
+            "id": 7,
+            "movieName": "Die hard",
+            "runtime": "120min",
+            "img": "./assets/die_hard.jpeg",
+            "date": "2021-09-04",
+            "time": "11:30",
+            "seats": "TBA"
+        }
+    ]
