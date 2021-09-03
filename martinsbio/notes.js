@@ -1,5 +1,3 @@
-// https://aws.amazon.com/s3/ < this one has the json adress to picture
-// store picture in cloud, not local in server
 
 
 // [
@@ -43,3 +41,7 @@
 // read for tomottorw https://stackoverflow.com/questions/55342406/updating-and-merging-state-object-using-react-usestate-hook
 
 //should I use functions instad of writting it in the code directly?
+
+
+
+// https://stackoverflow.com/questions/29244731/react-router-how-to-manually-invoke-link

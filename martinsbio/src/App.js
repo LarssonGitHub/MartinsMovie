@@ -10,9 +10,9 @@ import './app.css';
 
 import Header from "./components/Header"
 import Home from "./components/Home"
-import Listnings from "./components/Listnings"
+import MovieListings from "./components/MovieListings"
 import SearchBar from "./components/SearchBar"
-
+import BookingCard from "./components/BookingCard"
 
 export default function App() {
   
@@ -21,8 +21,10 @@ const [refresh, setRefresh] = useState(false);
 const [searchQuary, setSearchQuary] = useState({    
   searchQuaryText: "",
   searchQuaryDate: ""});
+const [BookingObject, setBookingObject] = useState("")
 
 useEffect(() => {
+  // console.log("use effect on fetch");
   fetch('data.json')
   .then(resp => resp.json())
     .then(data => setMovies(data))
@@ -42,14 +44,17 @@ useEffect(() => {
   return (
     // Need to make better.... async stuff...!
     <Router>
-      <Header />
+      <Header/>
         <Switch>
         <Route exact path="/">
-            <Home />
+            <Home/>
           </Route>
           <Route exact path="/listings">
             <SearchBar searchQuary={searchQuary} setSearchQuary={setSearchQuary}/>
-            <Listnings movies={movies} setRefresh={setRefresh} searchQuary={searchQuary}/>
+            <MovieListings movies={movies} setRefresh={setRefresh} searchQuary={searchQuary} setBookingObject={setBookingObject}/>
+          </Route>
+          <Route exact path="/booking">
+          {!BookingObject ? <p>You need to pick a movie first!</p> : <BookingCard  BookingObject={BookingObject} movies={movies}/>  }
           </Route>
           <Route path="/*">
             <Redirect to="/" /> 
@@ -57,6 +62,7 @@ useEffect(() => {
           </Route>
         </Switch>
     </Router>
+
   );
 }
 
