@@ -6,7 +6,7 @@
             "img": "./assets/pokemon_poster.jpeg",
             "date": "2021-09-01",
             "time": "11:30",
-            "seats": ["booked" ,"booked", "free" ,"free" ,"free","booked","booked","booked" ]
+            "seats": [true,true,true,false,false,false,true,true,true,true,true,true,true,true]
         },
         {
             "id": 2,
@@ -15,7 +15,7 @@
             "img": "./assets/Castle_in_the_Sky.jpeg",
             "date": "2021-09-02",
             "time": "11:30",
-            "seats": ["booked" ,"booked", "free" ,"free" ,"free","booked","booked","booked" ]
+            "seats": [false,false,false,false,false,true,true,true,true,true,true,true,true,true]
         },
         {
             "id": 3,
@@ -24,7 +24,7 @@
             "img": "./assets/die_hard.jpeg",
             "date": "2021-09-02",
             "time": "11:30",
-            "seats": ["booked" ,"booked", "free" ,"free" ,"free","free","free","booked" ]
+            "seats": [false,false,false,false,false,false,false,false,false,false,false,false,false,false]
         },
         {
             "id": 4,
