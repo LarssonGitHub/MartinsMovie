@@ -4,8 +4,8 @@
     justify-content: space-evenly;
 }
 
-
 .borders { 
+    position: relative;
     transition: all .2s ease-in-out; 
     border: 2px black solid;
     background-color: white;
@@ -14,3 +14,18 @@
     .borders:hover { 
     transform: scale(1.3); 
     }
+
+.greyedOut {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: grey;
+    opacity: 0.9;
+}
+
+.greyedOut p {
+    text-align: center;
+    color: red;
+}

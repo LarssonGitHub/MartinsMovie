@@ -1,69 +1,69 @@
-import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Home from './components/Home'
+import Search from "./components/Search";
+import Booking from './components/Booking'
 import './app.css';
-
-import Header from "./components/Header"
-import Home from "./components/Home"
-import MovieListings from "./components/MovieListings"
-import SearchBar from "./components/SearchBar"
-import BookingCard from "./components/BookingCard"
+import MovieCard from "./components/MovieCard";
 
 export default function App() {
-  
-const [movies, setMovies] = useState("");
-const [refresh, setRefresh] = useState(false);
-const [searchQuary, setSearchQuary] = useState({    
-  searchQuaryText: "",
-  searchQuaryDate: ""});
-const [BookingObject, setBookingObject] = useState("")
 
-useEffect(() => {
-  // console.log("use effect on fetch");
-  fetch('data.json')
-  .then(resp => resp.json())
-    .then(data => setMovies(data))
-    .catch(err => console.log(err))
+    const [fetchedMovies,
+        setfetchedMovies] = useState("");
+    const [timeStamp,
+        setTimeStamp] = useState({date: null, time: null})
 
-    if (refresh === true ) {
-      console.log("refreshed");
-      setRefresh(false)
-    }
-},[refresh]);
+    const [bookingObject,
+        setBookingObject] = useState()
 
-// let count = 1;
-// <p>{count += 1}</p>
-// <button onClick={() => console.log(count)}>check var</button>
-// //TODO... This..! Ask Teacher
+    useEffect(() => {
+        // console.log("use effect on fetch");
+        fetch('data.json')
+            .then(resp => resp.json())
+            .then(data => setfetchedMovies(data))
+            .catch(err => console.log(err))
+    }, []);
 
-  return (
-    // Need to make better.... async stuff...!
-    <Router>
-      <Header/>
-        <Switch>
-        <Route exact path="/">
-            <Home/>
-          </Route>
-          <Route exact path="/listings">
-            <SearchBar searchQuary={searchQuary} setSearchQuary={setSearchQuary}/>
-            <MovieListings movies={movies} setRefresh={setRefresh} searchQuary={searchQuary} setBookingObject={setBookingObject}/>
-          </Route>
-          <Route exact path="/booking">
-          {!BookingObject ? <p>You need to pick a movie first!</p> : <BookingCard  BookingObject={BookingObject} movies={movies}/>  }
-          </Route>
-          <Route path="/*">
-            <Redirect to="/" /> 
-            {console.log("hello from app.js")}
-          </Route>
-        </Switch>
-    </Router>
+    useEffect(() => {
+        console.log("date time use effect");
+        // let date = new Date() var time = date.getHours() + ":" + date.getMinutes();
+        // setTimeStamp({     date: date.toLocaleDateString(),     time: time   });
 
-  );
+        setTimeStamp({date: "2021-09-03", time: "14:30"});
+
+    }, [])
+
+    return (
+        <Router>
+            <Header/> 
+            <Switch>
+                <Route exact path="/">
+                    <Home
+                        fetchedMovies={fetchedMovies}
+                        timeStamp={timeStamp}
+                        setBookingObject={setBookingObject}/>
+                </Route>
+                <Route exact path="/search">
+                    <Search
+                        fetchedMovies={fetchedMovies}
+                        timeStamp={timeStamp}
+                        setBookingObject={setBookingObject}/>
+                </Route>
+                <Route exact path="/booking">
+                    <Booking bookingObject={bookingObject}/>
+                </Route>
+                <Route component={NoMatchPage}/>
+            </Switch>
+            <Footer/>
+        </Router>
+    );
 }
 
-
+const NoMatchPage = () => {
+    return (
+        <h3>404 - Not found</h3>
+    );
+};

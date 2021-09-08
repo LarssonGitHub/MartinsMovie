@@ -4,7 +4,7 @@
             "movieName": "Pokemon The First Movie",
             "runtime": "90min",
             "img": "./assets/pokemon_poster.jpeg",
-            "date": "2021-09-01",
+            "date": "2021-09-02",
             "time": "11:30",
             "seats": [true,true,true,false,false,false,true,true,true,true,true,true,true,true]
         },
@@ -13,9 +13,9 @@
             "movieName": "Castle in the sky",
             "runtime": "85min",
             "img": "./assets/Castle_in_the_Sky.jpeg",
-            "date": "2021-09-02",
-            "time": "11:30",
-            "seats": [false,false,false,false,false,true,true,true,true,true,true,true,true,true]
+            "date": "2021-09-08",
+            "time": "13:30",
+            "seats": [false,false,false,false,false,false,false,false,false,false,false,false,false,false]
         },
         {
             "id": 3,
@@ -23,34 +23,34 @@
             "runtime": "120min",
             "img": "./assets/die_hard.jpeg",
             "date": "2021-09-02",
-            "time": "11:30",
-            "seats": [false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+            "time": "14:00",
+            "seats": [true,true,false,false,false,false,false,false,false,false,false,false,false,false]
         },
         {
             "id": 4,
             "movieName": "Forest Gump",
             "runtime": "20min",
             "img": "",
-            "date": "2021-09-03",
-            "time": "11:30",
-            "seats": "TBA"
+            "date": "2021-09-02",
+            "time": "14:00",
+            "seats": [true,true,true,false,false,false,true,true,true,true,true,true,true,true]
         },
         {"id": 5,
             "movieName": "Pokemon The First Movie",
             "runtime": "90min",
             "img": "./assets/pokemon_poster.jpeg",
-            "date": "2021-09-03",
-            "time": "11:30",
-            "seats": "TBA"
+            "date": "2021-09-02",
+            "time": "15:00",
+            "seats": [true,true,true,false,false,false,true,true,true,true,true,true,true,true]
         },
         {
             "id": 6,
             "movieName": "Castle in the sky",
             "runtime": "85min",
             "img": "./assets/Castle_in_the_Sky.jpeg",
-            "date": "2021-09-01",
+            "date": "2021-09-03",
             "time": "11:30",
-            "seats": "TBA"
+            "seats": [true,true,true,false,false,false,true,true,true,true,true,true,true,true]
         },
         {
             "id": 7,
@@ -59,6 +59,6 @@
             "img": "./assets/die_hard.jpeg",
             "date": "2021-09-04",
             "time": "11:30",
-            "seats": "TBA"
+            "seats": [true,true,true,false,false,false,true,true,true,true,true,true,true,true]
         }
     ]

@@ -45,3 +45,8 @@
 
 
 // https://stackoverflow.com/questions/29244731/react-router-how-to-manually-invoke-link
+
+
+
+// checkedbox
+// 
