@@ -13,6 +13,7 @@
     
     .borders:hover { 
     transform: scale(1.3); 
+    z-index: 999999;
     }
 
 .greyedOut {
@@ -21,11 +22,40 @@
     left: 0;
     min-width: 100%;
     min-height: 100%;
-    background-color: grey;
-    opacity: 0.9;
+    background-color: white;
+    opacity: 0.8;
+    z-index: 999999;
 }
 
-.greyedOut p {
-    text-align: center;
-    color: red;
+
+.seatingContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1em;
 }
+
+.seatingContainer .seat {
+    text-align: center;
+    flex-basis: 0;
+    padding: 1em;
+}
+
+.seatingContainer .unavailable {
+    background-color: darkred;
+}
+.seatingContainer .free {
+    background-color: lightgreen;
+}
+.seatingContainer .booked {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    0% {
+      background-color: lightyellow;
+    }
+    100% {
+        background-color: yellow;
+    }
+  }

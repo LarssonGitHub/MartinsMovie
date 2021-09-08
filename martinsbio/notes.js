@@ -50,3 +50,7 @@
 
 // checkedbox
 // 
+
+
+
+// https://stackoverflow.com/questions/20798477/how-to-find-index-of-all-occurrences-of-element-in-array/20798567

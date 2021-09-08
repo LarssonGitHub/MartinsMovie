@@ -2,10 +2,10 @@ import MovieCard from "./MovieCard";
 
 export default function Listings(props) {
     const {fetchedMovies, timeStamp, searchQuary, setBookingObject} = props;
-    console.log(setBookingObject);
+
     function filterMovies(fetchedMovies, timeStamp, searchQuary) {
 
-        let filterMovies =  fetchedMovies;
+        let filterMovies = fetchedMovies;
 
         if (searchQuary.searchQuaryAried === true) {
             const afterUnaired = filterMovies.filter(movie => movie.date >= timeStamp.date);
@@ -14,12 +14,16 @@ export default function Listings(props) {
 
         if (searchQuary.searchQuarySeats === true) {
             // TODO Fix this... so user can search for seat....
-                    console.log("filter out all unbooked....");
+            const afterUnbooked = filterMovies.filter(movie => movie.seats.includes(true))
+            if (afterUnbooked.length === 0) {
+                return false
+            }
+            filterMovies = afterUnbooked;
         }
 
         if (searchQuary.searchQuaryText !== "" || searchQuary.searchQuaryDate !== "") {
             const afterSearchQuary = filterMovies.filter(movie => movie.movieName.toLowerCase().includes(searchQuary.searchQuaryText) && movie.date.includes(searchQuary.searchQuaryDate));
-             filterMovies = afterSearchQuary;
+            filterMovies = afterSearchQuary;
         }
         if (filterMovies.length === 0) {
             return false;
@@ -36,9 +40,9 @@ export default function Listings(props) {
                     key={movieObject.id}
                     movieObject={movieObject}
                     timeStamp={timeStamp}
-                    setBookingObject={setBookingObject}
-                    />)
-                : <p>There are no movies that matches your search D: </p>}
+                    setBookingObject={setBookingObject}/>)
+                : <p>There are no movies that matches your search D:
+                </p>}
         </section>
     )
 }

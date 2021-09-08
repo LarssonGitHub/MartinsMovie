@@ -7,8 +7,10 @@ import Home from './components/Home'
 import Search from "./components/Search";
 import Booking from './components/Booking'
 import './app.css';
-import MovieCard from "./components/MovieCard";
-
+// import MovieCard from "./components/MovieCard";
+// import Tickets from "./components/TicketCard";
+import TicketCard from "./components/TicketCard";
+import BookingCard from "./components/BookingCard";
 export default function App() {
 
     const [fetchedMovies,
@@ -18,6 +20,8 @@ export default function App() {
 
     const [bookingObject,
         setBookingObject] = useState()
+    const [message,
+        setMessage] = useState("")
 
     useEffect(() => {
         // console.log("use effect on fetch");
@@ -38,7 +42,7 @@ export default function App() {
 
     return (
         <Router>
-            <Header/> 
+            <Header/>
             <Switch>
                 <Route exact path="/">
                     <Home
@@ -53,7 +57,14 @@ export default function App() {
                         setBookingObject={setBookingObject}/>
                 </Route>
                 <Route exact path="/booking">
-                    <Booking bookingObject={bookingObject}/>
+                    <Booking message={message}>
+                        {bookingObject
+                            ? <BookingCard bookingObject={bookingObject}>
+                                    <TicketCard setMessage={setMessage} bookingObject={bookingObject}/>
+                                </BookingCard>
+                            : <p>Sorry, you need to book a movie first!</p>
+}
+                    </Booking>
                 </Route>
                 <Route component={NoMatchPage}/>
             </Switch>

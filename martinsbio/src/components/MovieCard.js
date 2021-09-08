@@ -52,9 +52,7 @@ export default function MovieCard(props) {
 
         <section className="borders" onClick={() => redriectToBooking()}>
             {date < timeStamp.date || totalSeats <= 0 || !totalSeats
-                ? <div className="greyedOut">
-                        <p>Unbookable</p>
-                    </div>
+                ? <div className="greyedOut"></div>
                 : ""}
             {img
                 ? <img src={img} alt={movieName} width="200"></img>
