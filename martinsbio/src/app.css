@@ -59,3 +59,9 @@
         background-color: yellow;
     }
   }
+
+.fakeHyperlink {
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+  }

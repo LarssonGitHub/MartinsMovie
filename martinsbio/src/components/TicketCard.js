@@ -1,11 +1,11 @@
-import { useHistory } from 'react-router'
+import {useHistory} from 'react-router'
 import {useState} from "react";
 import SeatingCard from "./SeatingCard"
-export default function TicketCard({setMessage, bookingObject}) {
+export default function TicketCard({bookingObject}) {
+    
+    let {seats} = bookingObject
 
     const history = useHistory()
-
-    let {seats} = bookingObject
 
     const [totalSeats,
         setTotalSeats] = useState(seats)
@@ -15,6 +15,9 @@ export default function TicketCard({setMessage, bookingObject}) {
 
     const [orderStep,
         setOrderStep] = useState(true)
+
+    const [message,
+        setMessage] = useState("")
 
     function sortFreeSeats() {
         let countSeats = totalSeats
@@ -30,7 +33,7 @@ export default function TicketCard({setMessage, bookingObject}) {
     function incrementTickets() {
         setMessage("")
         if (tickets >= sortFreeSeats()) {
-            setMessage("Can't order more than tuckets than there are free seats")
+            setMessage("Can't order more than tickets than there are free seats")
             return;
         }
         setTickets(tickets => tickets += 1)
@@ -85,20 +88,21 @@ export default function TicketCard({setMessage, bookingObject}) {
             return randStr;
         };
 
-        //clean and filter all json, + so much more.... 
+        //clean and filter all json, + so much more....
         let BookingNumber = bookingNumber()
 
-        const allSeatNumbers = totalSeats
-        .map((car, i) => car === 'booked' ? i : -1)
-        .filter(index => index !== -1);
+        const allSeatNumbers = totalSeats.map((seat, i) => seat === 'booked'
+            ? i
+            : -1).filter(index => index !== -1);
 
-        alert("congrats, your booking number is" +  "\r\n" + BookingNumber + "\r\n\r\n" + "with the seat Numbers of..." + allSeatNumbers)
+        alert("congrats, your booking number is\r\n" + BookingNumber + "\r\n\r\nwith the seat Numbers of..." + allSeatNumbers)
 
         history.go(0)
     }
 
     return (
         <section>
+            <p>{message}</p>
             {orderStep
                 ? <section>
                         <h3>Number of Tickets</h3>
@@ -119,7 +123,7 @@ export default function TicketCard({setMessage, bookingObject}) {
                     <button onClick={() => setOrderStep(true)}>Back</button>
                 </section>}
             {tickets === 0
-                ? <button onClick={()=> checkout()}>Order the shit</button>
+                ? <button onClick={() => checkout()}>Order the shit</button>
                 : ""}
         </section>
 

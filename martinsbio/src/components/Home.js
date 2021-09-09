@@ -15,7 +15,10 @@ export default function Home({fetchedMovies, timeStamp, setBookingObject}) {
             <section>
                 <h2>What's on today?</h2>
                 {(fetchedMovies) && (timeStamp.date || timeStamp.time)
-                    ? <HomeListings fetchedMovies={fetchedMovies} timeStamp={timeStamp} setBookingObject={setBookingObject}/>
+                    ? <HomeListings
+                            fetchedMovies={fetchedMovies}
+                            timeStamp={timeStamp}
+                            setBookingObject={setBookingObject}/>
                     : <h1>Loading</h1>}
             </section>
 

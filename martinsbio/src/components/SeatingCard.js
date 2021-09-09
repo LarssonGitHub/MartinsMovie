@@ -1,6 +1,5 @@
 export default function SeatingCard({seatingIndex, seatingValue, bookSeating}) {
     
-    // console.log(seatingValue ? "free" : "booked");
     // todo CLEAN THIS MESS UP....
     return (
         <>

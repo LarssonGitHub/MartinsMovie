@@ -7,23 +7,35 @@ export default function Listings(props) {
 
         let filterMovies = fetchedMovies;
 
-        if (searchQuary.searchQuaryAried === true) {
-            const afterUnaired = filterMovies.filter(movie => movie.date >= timeStamp.date);
-            filterMovies = afterUnaired;
-        }
-
-        if (searchQuary.searchQuarySeats === true) {
-            // TODO Fix this... so user can search for seat....
-            const afterUnbooked = filterMovies.filter(movie => movie.seats.includes(true))
-            if (afterUnbooked.length === 0) {
-                return false
+        if (searchQuary.searchQuaryOrder !== "showAll") {
+        console.log("called sort");
+            if (searchQuary.searchQuaryOrder === "startDate") {
+                const sortByAiredDate = filterMovies.sort((x, y) => x.date.replaceAll("-", "") - y.date.replaceAll("-", ""));
+                filterMovies = sortByAiredDate;
+                console.log(sortByAiredDate);
             }
+            if (searchQuary.searchQuaryOrder === "startTime") {
+                const sortByAiredTime = filterMovies.sort((x, y) => x.time.replace(":", "") - y.time.replace(":", ""));
+                filterMovies = sortByAiredTime;
+                console.log(sortByAiredTime);
+        }}
+
+        if (searchQuary.searchQuaryAried === false) {
+            const afterAiredDate = filterMovies.filter(movie => movie.date >= timeStamp.date);
+            filterMovies = afterAiredDate;
+        }
+        if (searchQuary.searchQuarySeats === false) {
+            const afterUnbooked = filterMovies.filter(movie => movie.seats.includes(true))
             filterMovies = afterUnbooked;
         }
-
+ 
         if (searchQuary.searchQuaryText !== "" || searchQuary.searchQuaryDate !== "") {
             const afterSearchQuary = filterMovies.filter(movie => movie.movieName.toLowerCase().includes(searchQuary.searchQuaryText) && movie.date.includes(searchQuary.searchQuaryDate));
             filterMovies = afterSearchQuary;
+        }
+        if (searchQuary.searchQuaryTime !== "") {
+            const afterTime = filterMovies.filter(movie => movie.time >= searchQuary.searchQuaryTime);
+            filterMovies = afterTime;
         }
         if (filterMovies.length === 0) {
             return false;

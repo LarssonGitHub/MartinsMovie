@@ -6,13 +6,7 @@ export default function MovieCard(props) {
 
     const history = useHistory();
 
-    const {
-        date,
-        time,
-        seats,
-        movieName,
-        img
-    } = movieObject
+    const {date, time, seats, movieName, img} = movieObject
 
     const [totalSeats,
         setTotalSeats] = useState(false)
@@ -32,7 +26,6 @@ export default function MovieCard(props) {
         setTotalSeats(countSeats)
     }, [seats])
 
-
     function redriectToBooking() {
         if (date < timeStamp.date) {
             console.log("Movie is already over");
@@ -43,10 +36,9 @@ export default function MovieCard(props) {
             return;
         }
         setBookingObject(movieObject);
-    
+
         history.push("/booking");
     }
-
 
     return (
 

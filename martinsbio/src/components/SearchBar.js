@@ -1,4 +1,4 @@
-export default function Home({searchQuary, setSearchQuary}) {
+export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState}) {
 
     const handleChange = event => {
         let {name, value} = event.target;
@@ -6,11 +6,12 @@ export default function Home({searchQuary, setSearchQuary}) {
             value = event.target.checked;
         }
         console.log(name, value);
-        setSearchQuary(search => ({
-            ...search,
-            [name]: value
+        setSearchQuary(spreadObject => ({
+            ...spreadObject,
+            [name]: value === String
+                ? value.toLowerCase()
+                : value
         }));
-
     };
 
     return (
@@ -25,7 +26,35 @@ export default function Home({searchQuary, setSearchQuary}) {
                 type="text"
                 value={searchQuary.text}
                 onInput={handleChange}/>
-
+            <br/>
+            < label htmlFor="sortByInput">
+                Order by:
+            </label>
+            <span>
+                <input
+                    name="searchQuaryOrder"
+                    id="sortByInput"
+                    type="radio"
+                    value={"startDate"}
+                    onInput={handleChange}/>
+                Start Date
+                <input
+                    name="searchQuaryOrder"
+                    id="sortByInput"
+                    type="radio"
+                    value={"startTime"}
+                    onInput={handleChange}/>
+                Start Time
+                <input
+                defaultChecked 
+                    name="searchQuaryOrder"
+                    id="sortByInput"
+                    type="radio"
+                    value={"showAll"}
+                    onInput={handleChange}/>
+                Show all
+            </span>
+            <br/>
             < label htmlFor="dateInput">
                 Search Specific date
             </label>
@@ -36,17 +65,19 @@ export default function Home({searchQuary, setSearchQuary}) {
                 value={searchQuary.date}
                 onInput={handleChange}/> {/* search after time.. */}
 
-            {/* //TODO fix this so value in date is reseted! */}
-            {/* <button
-                id="myBtn"
-                name="searchQuaryDate"
-                value={""}
-                onClick={handleChange}>Remove set date</button> */}
-
+            < label htmlFor="timeInput">
+                Search what time
+            </label>
+            <input
+                type="time"
+                id="timeInput"
+                name="searchQuaryTime"
+                value={searchQuary.time}
+                onInput={handleChange}/>
             <br/>
 
             < label htmlFor="checkBoxAired">
-                Remove already aried viewings
+                Show already aried viewings
             </label>
             <input
                 type="checkbox"
@@ -57,7 +88,7 @@ export default function Home({searchQuary, setSearchQuary}) {
 
             <br/>
             < label htmlFor="checkBoxSeats">
-                Remove fully booked viewings
+                Show fully booked viewings
             </label>
             <input
                 type="checkbox"
@@ -65,6 +96,8 @@ export default function Home({searchQuary, setSearchQuary}) {
                 name="searchQuarySeats"
                 checked={searchQuary.seats}
                 onChange={handleChange}/>
+            <br/>
+            <span className="fakeHyperlink" onClick={() => clearSearchQuaryState()}>Reset search</span>
         </nav>
     )
 }

@@ -1,10 +1,8 @@
-export default function Booking({children, message}) {
+export default function Booking({children}) {
     return (
         <main>
-        <div><b>{message}</b></div>
-        <h1>Finish up your booking</h1>
-       {children}
+            <h1>Finish up your booking</h1>
+            {children}
         </main>
     )
 }
-

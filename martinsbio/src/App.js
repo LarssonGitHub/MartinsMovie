@@ -7,8 +7,8 @@ import Home from './components/Home'
 import Search from "./components/Search";
 import Booking from './components/Booking'
 import './app.css';
-// import MovieCard from "./components/MovieCard";
-// import Tickets from "./components/TicketCard";
+// import MovieCard from "./components/MovieCard"; import Tickets from
+// "./components/TicketCard";
 import TicketCard from "./components/TicketCard";
 import BookingCard from "./components/BookingCard";
 export default function App() {
@@ -20,11 +20,8 @@ export default function App() {
 
     const [bookingObject,
         setBookingObject] = useState()
-    const [message,
-        setMessage] = useState("")
 
     useEffect(() => {
-        // console.log("use effect on fetch");
         fetch('data.json')
             .then(resp => resp.json())
             .then(data => setfetchedMovies(data))
@@ -33,10 +30,13 @@ export default function App() {
 
     useEffect(() => {
         console.log("date time use effect");
-        // let date = new Date() var time = date.getHours() + ":" + date.getMinutes();
-        // setTimeStamp({     date: date.toLocaleDateString(),     time: time   });
-
-        setTimeStamp({date: "2021-09-03", time: "14:30"});
+        let date = new Date()
+        var time = date.getHours() + ":" + date.getMinutes();
+        setTimeStamp({
+            date: date.toLocaleDateString(),
+            time: time
+        });
+        // For debug.... setTimeStamp({date: "2021-09-03", time: "14:30"});
 
     }, [])
 
@@ -56,14 +56,14 @@ export default function App() {
                         timeStamp={timeStamp}
                         setBookingObject={setBookingObject}/>
                 </Route>
+                {/* Above this line is props passed down levels mainly used, bellow this one is composition, hence why they might be written diffrently. */}
                 <Route exact path="/booking">
-                    <Booking message={message}>
+                    <Booking>
                         {bookingObject
                             ? <BookingCard bookingObject={bookingObject}>
-                                    <TicketCard setMessage={setMessage} bookingObject={bookingObject}/>
+                                    <TicketCard bookingObject={bookingObject}/>
                                 </BookingCard>
-                            : <p>Sorry, you need to book a movie first!</p>
-}
+                            : <p>Sorry, you need to book a movie first!</p>}
                     </Booking>
                 </Route>
                 <Route component={NoMatchPage}/>
