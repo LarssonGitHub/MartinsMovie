@@ -1,23 +1,20 @@
 import MovieCard from "./MovieCard";
 
 export default function Listings(props) {
-    const {fetchedMovies, timeStamp, searchQuary, setBookingObject} = props;
+    const {fetchedMovies, timeStamp, searchQuary, setBookingObject, setMessage} = props;
 
     function filterMovies(fetchedMovies, timeStamp, searchQuary) {
 
         let filterMovies = fetchedMovies;
 
         if (searchQuary.searchQuaryOrder !== "showAll") {
-        console.log("called sort");
             if (searchQuary.searchQuaryOrder === "startDate") {
                 const sortByAiredDate = filterMovies.sort((x, y) => x.date.replaceAll("-", "") - y.date.replaceAll("-", ""));
                 filterMovies = sortByAiredDate;
-                console.log(sortByAiredDate);
             }
             if (searchQuary.searchQuaryOrder === "startTime") {
                 const sortByAiredTime = filterMovies.sort((x, y) => x.time.replace(":", "") - y.time.replace(":", ""));
                 filterMovies = sortByAiredTime;
-                console.log(sortByAiredTime);
         }}
 
         if (searchQuary.searchQuaryAried === false) {
@@ -52,7 +49,8 @@ export default function Listings(props) {
                     key={movieObject.id}
                     movieObject={movieObject}
                     timeStamp={timeStamp}
-                    setBookingObject={setBookingObject}/>)
+                    setBookingObject={setBookingObject}
+                    setMessage={setMessage}/>)
                 : <p>There are no movies that matches your search D:
                 </p>}
         </section>

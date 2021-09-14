@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-export default function Header() {
+export default function Header({timeStamp}) {
 
     return (
         <header>
@@ -17,6 +17,8 @@ export default function Header() {
                     </li>
                 </ul>
             </nav>
+            <p>{timeStamp.date}</p>
+            <p>{timeStamp.time}</p>
         </header>
     );
 }

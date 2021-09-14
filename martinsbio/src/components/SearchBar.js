@@ -5,7 +5,6 @@ export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState
         if (event.target.type === "checkbox") {
             value = event.target.checked;
         }
-        console.log(name, value);
         setSearchQuary(spreadObject => ({
             ...spreadObject,
             [name]: value === String

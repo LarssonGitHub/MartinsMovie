@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 
 import MovieCard from "./MovieCard";
 
-export default function Listings({fetchedMovies, timeStamp, setBookingObject}) {
+export default function Listings({fetchedMovies, timeStamp, setBookingObject, setMessage}) {
 
     function filter(fetchedMovies, timeStamp) {
         let todaysMovies = fetchedMovies;
@@ -26,7 +26,8 @@ export default function Listings({fetchedMovies, timeStamp, setBookingObject}) {
                     key={movieObject.id}
                     movieObject={movieObject}
                     timeStamp={timeStamp}
-                    setBookingObject={setBookingObject}/>)
+                    setBookingObject={setBookingObject}
+                    setMessage={setMessage}/>)
                 : <p>No movies currently airing today! Try our <Link to="/search">Search</Link>
                 </p>}
         </section>

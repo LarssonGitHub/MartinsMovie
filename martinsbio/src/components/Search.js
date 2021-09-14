@@ -4,10 +4,9 @@ import SearchBar from "./SearchBar"
 import SearchListings from "./SearchListings"
 
 export default function Search(props) {
-    const {fetchedMovies, timeStamp, setBookingObject} = props;
+    const {fetchedMovies, timeStamp, setBookingObject, setMessage} = props;
     const history = useHistory()
     function clearSearchQuaryState() {
-        console.log("called");
         const initialSearchQuaryState = {
             searchQuaryText: "",
             searchQuaryDate: "",
@@ -34,7 +33,7 @@ export default function Search(props) {
                 <SearchBar
                     searchQuary={searchQuary}
                     setSearchQuary={setSearchQuary}
-                    clearSearchQuaryState={clearSearchQuaryState}/> {console.log(searchQuary)}
+                    clearSearchQuaryState={clearSearchQuaryState}/>
             </section>
             <section>
                 <h2>Results:</h2>
@@ -43,7 +42,8 @@ export default function Search(props) {
                             fetchedMovies={fetchedMovies}
                             timeStamp={timeStamp}
                             searchQuary={searchQuary}
-                            setBookingObject={setBookingObject}/>
+                            setBookingObject={setBookingObject}
+                            setMessage={setMessage}/>
                     : <h1>Loading</h1>}
 
             </section>

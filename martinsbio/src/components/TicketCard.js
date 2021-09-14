@@ -1,8 +1,8 @@
 import {useHistory} from 'react-router'
 import {useState} from "react";
 import SeatingCard from "./SeatingCard"
-export default function TicketCard({bookingObject}) {
-    
+export default function TicketCard({bookingObject, setBookingObject, setMessage}) {
+
     let {seats} = bookingObject
 
     const history = useHistory()
@@ -16,8 +16,6 @@ export default function TicketCard({bookingObject}) {
     const [orderStep,
         setOrderStep] = useState(true)
 
-    const [message,
-        setMessage] = useState("")
 
     function sortFreeSeats() {
         let countSeats = totalSeats
@@ -25,13 +23,12 @@ export default function TicketCard({bookingObject}) {
             .length
         if (countSeats === 0) {
             return "No free seats"
-            //Add disable so user can't book here...
+
         }
         return countSeats;
     }
 
     function incrementTickets() {
-        setMessage("")
         if (tickets >= sortFreeSeats()) {
             setMessage("Can't order more than tickets than there are free seats")
             return;
@@ -40,7 +37,6 @@ export default function TicketCard({bookingObject}) {
     }
 
     function decreaseTickets() {
-        setMessage("")
         if (tickets <= 1) {
             setMessage("You must at least order 1 ticket")
             return;
@@ -49,7 +45,6 @@ export default function TicketCard({bookingObject}) {
     }
 
     const bookSeating = (seatingIndex) => {
-
         const newSeats = [...totalSeats];
         if (newSeats[seatingIndex] === false) {
             return setMessage("How did you do that?");
@@ -65,19 +60,56 @@ export default function TicketCard({bookingObject}) {
         if (newSeats[seatingIndex] === "booked") {
             newSeats[seatingIndex] = true;
             setTickets(tickets => tickets + 1)
-            setTotalSeats(newSeats)
-            return setMessage("");
+            return setTotalSeats(newSeats)
         }
     }
 
-    //TODO... Fix this horrible thing...
-    function checkout() {
-        // TODO validation.....
-        if (tickets !== 0 && bookingObject.length < 1) {
-            return setMessage("something went horrible wrong on our end!");
-        }
+    function validateOrder() {
+        try {
+            if (tickets !== 0) {
+                throw new Error("User still has tickets");
+            }
 
-        //Fix booking number
+            const updatedSeats = totalSeats.map(seat => seat === "booked"
+                ? false
+                : seat);
+
+            if (!Array.isArray(updatedSeats) || !updatedSeats.includes(true) || !updatedSeats.includes(false)) {
+                throw new Error("The validation of seats didn't go through");
+            }
+
+            setBookingObject({
+                ...bookingObject,
+                seats: updatedSeats
+            });
+
+            return true;
+
+        } catch (error) {
+            console.error(error);
+            return error;
+        }
+    }
+
+    async function postToDummyApi(url) {
+        return fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(bookingObject),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                if (!data) {
+                    throw new Error("something went wrong with fetch....")
+                }
+                return data;
+            })
+
+    }
+
+    function createBookingNumber() {
         function bookingNumber() {
             const lettersAsString = `A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9`;
             const letters = lettersAsString.split(',');
@@ -88,21 +120,49 @@ export default function TicketCard({bookingObject}) {
             return randStr;
         };
 
-        //clean and filter all json, + so much more....
-        let BookingNumber = bookingNumber()
+        let getBookingNumber = bookingNumber()
 
         const allSeatNumbers = totalSeats.map((seat, i) => seat === 'booked'
             ? i
             : -1).filter(index => index !== -1);
 
-        alert("congrats, your booking number is\r\n" + BookingNumber + "\r\n\r\nwith the seat Numbers of..." + allSeatNumbers)
+        alert("congrats, your booking number is\r\n" + getBookingNumber + "\r\n\r\nwith the seat Numbers of..." + allSeatNumbers)
 
         history.go(0)
     }
 
+    async function checkout() {
+
+        try {
+            const validationAccepted = validateOrder()
+
+            if (validationAccepted instanceof Error) {
+                throw new Error(validationAccepted)
+            }
+
+            const fetchAccepted = await postToDummyApi('https://jsonplaceholder.typicode.com/posts/1')
+                .then(anwser => {
+                return anwser
+            })
+                .catch(error => {
+                    return error
+                });
+
+            if (fetchAccepted instanceof Error) {
+                throw new Error(fetchAccepted)
+            }
+
+        } catch (error) {
+            alert(error)
+            return;
+        }
+
+        createBookingNumber()
+
+    }
+
     return (
         <section>
-            <p>{message}</p>
             {orderStep
                 ? <section>
                         <h3>Number of Tickets</h3>
@@ -123,9 +183,8 @@ export default function TicketCard({bookingObject}) {
                     <button onClick={() => setOrderStep(true)}>Back</button>
                 </section>}
             {tickets === 0
-                ? <button onClick={() => checkout()}>Order the shit</button>
+                ? <button onClick={() => checkout()}>Order Your seats</button>
                 : ""}
         </section>
-
     )
 }

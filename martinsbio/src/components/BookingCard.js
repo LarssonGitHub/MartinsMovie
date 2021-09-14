@@ -15,7 +15,6 @@ export default function BookingCard({children, bookingObject}) {
             .length;
     }
 
-    console.log(seats);
     return (
         <section>
             <h2>{movieName}</h2>
