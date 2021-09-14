@@ -10,7 +10,7 @@ import TicketCard from "./components/TicketCard";
 import BookingCard from "./components/BookingCard";
 import PopupBox from "./components/PopupBox";
 
-import './app.css';
+import './app.scss';
 export default function App() {
 
     const [fetchedMovies,
@@ -45,10 +45,9 @@ export default function App() {
     }, [])
 
     return (
-
+     <div className={"appContainer"}>
         <Router>
-            <Header timeStamp={timeStamp}/>
-            <PopupBox message={message} setMessage={setMessage}/>
+            <Header/>
             <Switch>
                 <Route exact path="/">
                     <Home
@@ -79,8 +78,10 @@ export default function App() {
                 </Route>
                 <Route component={NoMatchPage}/>
             </Switch>
-            <Footer/>
+            <Footer  timeStamp={timeStamp}/>
+            <PopupBox message={message} setMessage={setMessage}/>
         </Router>
+        </div>
     );
 }
 

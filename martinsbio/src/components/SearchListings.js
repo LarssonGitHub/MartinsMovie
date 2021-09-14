@@ -1,8 +1,9 @@
 import MovieCard from "./MovieCard";
 
-export default function Listings(props) {
-    const {fetchedMovies, timeStamp, searchQuary, setBookingObject, setMessage} = props;
+export default function Listings({fetchedMovies, timeStamp, searchQuary, setBookingObject, setMessage}) {
+   
 
+    // what the fuck am I supposed to do.... How do I clean this up?.. TODO TODO TODO
     function filterMovies(fetchedMovies, timeStamp, searchQuary) {
 
         let filterMovies = fetchedMovies;

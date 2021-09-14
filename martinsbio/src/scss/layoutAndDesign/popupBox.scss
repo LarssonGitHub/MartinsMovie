@@ -1,0 +1,17 @@
+.popupBox {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: $popupBoxColor;
+    width: 100%;
+    font-size: 2rem;
+    .popupMessage {
+        font-size: 2rem;
+    }
+    .popupBtn {
+        cursor: pointer;
+    }
+    .popupBtn:hover {
+        color: black;
+    }
+}

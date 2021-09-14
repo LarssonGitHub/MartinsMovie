@@ -54,3 +54,66 @@
 
 
 // https://stackoverflow.com/questions/20798477/how-to-find-index-of-all-occurrences-of-element-in-array/20798567
+
+
+
+
+
+// .listingContainer {
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	justify-content: space-evenly;
+// }
+// .borders {
+// 	position: relative;
+// 	transition: all .2s ease-in-out;
+// 	border: 2px black solid;
+// 	background-color: white;
+// 	&:hover {
+// 		transform: scale(1.3);
+// 		z-index: 999999;
+// 	}
+// }
+// .greyedOut {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	min-width: 100%;
+// 	min-height: 100%;
+// 	background-color: white;
+// 	opacity: 0.8;
+// 	z-index: 999999;
+// }
+// .seatingContainer {
+// 	display: flex;
+// 	justify-content: flex-start;
+// 	flex-wrap: wrap;
+// 	gap: 1em;
+// 	.seat {
+// 		text-align: center;
+// 		flex-basis: 0;
+// 		padding: 1em;
+// 	}
+// 	.unavailable {
+// 		background-color: darkred;
+// 	}
+// 	.free {
+// 		background-color: lightgreen;
+// 	}
+// 	.booked {
+// 		animation: blinker 1s linear infinite;
+// 	}
+// }
+// .fakeHyperlink {
+// 	cursor: pointer;
+// 	color: blue;
+// 	text-decoration: underline;
+// }
+// @keyframes blinker {
+// 	0% {
+// 		background-color: lightyellow;
+// 	}
+// 	100% {
+// 		background-color: yellow;
+// 	}
+// }

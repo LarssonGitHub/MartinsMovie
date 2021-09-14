@@ -1,0 +1,22 @@
+footer {
+    @include gradientBackgroundColor($primaryContainerColor, $secondaryContainerColor, right);
+    .footerContainer {
+        padding: 1.5rem 0.5rem;
+        display: flex;
+        gap: 1rem;
+        .footerContacts {
+            text-align: start;
+            flex: 0 1 60%;
+            padding: 0 1rem;
+        }
+        .footerClock {
+            text-align: start;
+            flex: 1;
+            border-left: solid 1px;
+            padding: 0 1rem;
+        }
+    }
+    .copyright {
+        text-align: center;
+    }
+}

@@ -41,14 +41,15 @@ export default function MovieCard({movieObject, timeStamp, setBookingObject, set
 
     return (
 
-        <section className="borders" onClick={() => redriectToBooking()}>
+        <section className="movieCard" onClick={() => redriectToBooking()}>
             {date < timeStamp.date || totalSeats <= 0 || !totalSeats
                 ? <div className="greyedOut"></div>
                 : ""}
             {img
-                ? <img src={img} alt={movieName} width="200"></img>
-                : <img src={'./assets/no_image.jpeg'} alt={movieName} width="200"></img>}
-            <h4>{movieName}</h4>
+                ? <img  className="movieCardImg" src={img} alt={movieName} width="200"></img>
+                : <img  className="movieCardImg"  src={'./assets/no_image.jpeg'} alt={movieName} width="200"></img>}
+            <div className={"movieCardDesc"}>
+            <h3>{movieName}</h3>
             <p>Playing: {date}
             </p>
             <p>Starts: {time}</p>
@@ -56,7 +57,7 @@ export default function MovieCard({movieObject, timeStamp, setBookingObject, set
                 ? <p>Seats left: {totalSeats}</p>
                 : <p>Fully booked</p>
 }
-
+            </div>
         </section>
     )
 }

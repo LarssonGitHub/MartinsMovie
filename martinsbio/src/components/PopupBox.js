@@ -1,5 +1,5 @@
 export default function PopupBox({message,setMessage}) {
     return (
-        message === "" ? "" : <div className="popupBox">{message}<span onClick={() => setMessage("")}>X</span></div>
+        message === "" ? "" : <span className="popupBox"><span className="popupMessage">{message}</span> <span className="popupBtn" onClick={() => setMessage("")}>X</span></span>
     )
 }
