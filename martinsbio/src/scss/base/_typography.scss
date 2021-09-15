@@ -3,8 +3,12 @@ body {
     color: $primaryFontColor;
 }
 
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $secondaryFontColor;
 }
 
@@ -14,3 +18,18 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
 }
+
+.listingContainer {
+    font-size: 1.5rem;
+}
+
+header {
+    font-size: 2rem;
+    //Something with react..... The a links doesn't count as a links...
+    a {
+        color: $primaryFontColor;
+        text-decoration: none;
+    }
+}
+
+

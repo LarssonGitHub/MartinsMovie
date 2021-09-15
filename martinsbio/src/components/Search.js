@@ -6,34 +6,34 @@ import SearchListings from "./SearchListings"
 export default function Search(props) {
     const {fetchedMovies, timeStamp, setBookingObject, setMessage} = props;
     const history = useHistory()
-    function clearSearchQuaryState() {
-        const initialSearchQuaryState = {
-            searchQuaryText: "",
-            searchQuaryDate: "",
-            searchQuaryTime: "",
-            searchQuaryOrder: "date",
-            searchQuaryAried: false,
-            searchQuarySeats: false
+    function clearsearchQueryState() {
+        const initialSearchQueryState = {
+            queryTitle: "",
+            queryDate: "",
+            queryTime: "",
+            querySort: "date",
+            removeAlreadyAired: true,
+            removeFullSeats: true
         }
-        setSearchQuary({
-            ...initialSearchQuaryState
+        setsearchQuery({
+            ...initialSearchQueryState
         });
         // TODO I have no idea how to clean the values on inputs.. So will just...
         // Reload the page.
         history.go(0)
     };
 
-    const [searchQuary,
-        setSearchQuary] = useState({searchQuaryText: "", searchQuaryDate: "", searchQuaryTime: "", searchQuaryOrder: "showAll", searchQuaryAried: false, searchQuarySeats: false});
+    const [searchQuery,
+        setsearchQuery] = useState({queryTitle: "", queryDate: "", queryTime: "", querySort: "showAll", removeAlreadyAired: true, removeFullSeats: true});
 
     return (
         <main>
             <h1>Our offering</h1>
             <section>
                 <SearchBar
-                    searchQuary={searchQuary}
-                    setSearchQuary={setSearchQuary}
-                    clearSearchQuaryState={clearSearchQuaryState}/>
+                    searchQuery={searchQuery}
+                    setsearchQuery={setsearchQuery}
+                    clearsearchQueryState={clearsearchQueryState}/>
             </section>
             <section>
                 <h2>Results:</h2>
@@ -41,7 +41,7 @@ export default function Search(props) {
                     ? <SearchListings
                             fetchedMovies={fetchedMovies}
                             timeStamp={timeStamp}
-                            searchQuary={searchQuary}
+                            searchQuery={searchQuery}
                             setBookingObject={setBookingObject}
                             setMessage={setMessage}/>
                     : <h1>Loading</h1>}

@@ -1,11 +1,11 @@
-export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState}) {
+export default function Home({searchQuery, setsearchQuery, clearsearchQueryState}) {
 
     const handleChange = event => {
         let {name, value} = event.target;
         if (event.target.type === "checkbox") {
             value = event.target.checked;
         }
-        setSearchQuary(spreadObject => ({
+        setsearchQuery(spreadObject => ({
             ...spreadObject,
             [name]: value === String
                 ? value.toLowerCase()
@@ -20,10 +20,10 @@ export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState
                 Name of movie:
             </label>
             <input
-                name="searchQuaryText"
+                name="queryTitle"
                 id="textInput"
                 type="text"
-                value={searchQuary.text}
+                value={searchQuery.text}
                 onInput={handleChange}/>
             <br/>
             < label htmlFor="sortByInput">
@@ -31,14 +31,14 @@ export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState
             </label>
             <span>
                 <input
-                    name="searchQuaryOrder"
+                    name="querySort"
                     id="sortByInput"
                     type="radio"
                     value={"startDate"}
                     onInput={handleChange}/>
                 Start Date
                 <input
-                    name="searchQuaryOrder"
+                    name="querySort"
                     id="sortByInput"
                     type="radio"
                     value={"startTime"}
@@ -46,7 +46,7 @@ export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState
                 Start Time
                 <input
                 defaultChecked 
-                    name="searchQuaryOrder"
+                    name="querySort"
                     id="sortByInput"
                     type="radio"
                     value={"showAll"}
@@ -60,8 +60,8 @@ export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState
             <input
                 type="date"
                 id="dateInput"
-                name="searchQuaryDate"
-                value={searchQuary.date}
+                name="queryDate"
+                value={searchQuery.date}
                 onInput={handleChange}/> {/* search after time.. */}
 
             < label htmlFor="timeInput">
@@ -70,33 +70,35 @@ export default function Home({searchQuary, setSearchQuary, clearSearchQuaryState
             <input
                 type="time"
                 id="timeInput"
-                name="searchQuaryTime"
-                value={searchQuary.time}
+                name="queryTime"
+                value={searchQuery.time}
                 onInput={handleChange}/>
             <br/>
 
             < label htmlFor="checkBoxAired">
-                Show already aried viewings
+            Don't show movies that has already Aired
             </label>
             <input
+                 defaultChecked 
                 type="checkbox"
                 id="checkBoxAired"
-                name="searchQuaryAried"
-                checked={searchQuary.airing}
+                name="removeAlreadyAired"
+                checked={searchQuery.airing}
                 onChange={handleChange}/>
 
             <br/>
             < label htmlFor="checkBoxSeats">
-                Show fully booked viewings
+                Don't show movies with full seats
             </label>
             <input
+                  defaultChecked 
                 type="checkbox"
                 id="checkBoxSeats"
-                name="searchQuarySeats"
-                checked={searchQuary.seats}
+                name="removeFullSeats"
+                checked={searchQuery.seats}
                 onChange={handleChange}/>
             <br/>
-            <span className="fakeHyperlink" onClick={() => clearSearchQuaryState()}>Reset search</span>
+            <span className="fakeHyperlink" onClick={() => clearsearchQueryState()}>Reset search</span>
         </nav>
     )
 }

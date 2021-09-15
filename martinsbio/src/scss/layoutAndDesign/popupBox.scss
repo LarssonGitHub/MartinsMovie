@@ -4,11 +4,12 @@
     left: 0;
     background-color: $popupBoxColor;
     width: 100%;
-    font-size: 2rem;
+    z-index: 9999;
     .popupMessage {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .popupBtn {
+        font-size: 2rem;
         cursor: pointer;
     }
     .popupBtn:hover {

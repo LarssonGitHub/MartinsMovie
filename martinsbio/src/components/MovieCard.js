@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 
-export default function MovieCard({movieObject, timeStamp, setBookingObject, setMessage}) {
+export default function MovieCard({movie, timeStamp, setBookingObject, setMessage}) {
 
     const history = useHistory();
 
-    const {date, time, seats, movieName, img} = movieObject
+    const {date, time, seats, movieName, img} = movie
 
     const [totalSeats,
         setTotalSeats] = useState(false)
@@ -34,7 +34,7 @@ export default function MovieCard({movieObject, timeStamp, setBookingObject, set
             setMessage("Movie is already over");
             return;
         }
-        setBookingObject(movieObject);
+        setBookingObject(movie);
 
         history.push("/booking");
     }

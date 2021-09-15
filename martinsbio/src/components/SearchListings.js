@@ -1,54 +1,80 @@
 import MovieCard from "./MovieCard";
 
-export default function Listings({fetchedMovies, timeStamp, searchQuary, setBookingObject, setMessage}) {
-   
+export default function Listings({fetchedMovies, timeStamp, searchQuery, setBookingObject, setMessage}) {
 
-    // what the fuck am I supposed to do.... How do I clean this up?.. TODO TODO TODO
-    function filterMovies(fetchedMovies, timeStamp, searchQuary) {
+    let newArrayOfMoviesAfterFiltering = fetchedMovies
 
-        let filterMovies = fetchedMovies;
+    const {
+        queryTitle,
+        queryDate,
+        queryTime,
+        querySort,
+        removeAlreadyAired,
+        removeFullSeats
+    } = searchQuery;
 
-        if (searchQuary.searchQuaryOrder !== "showAll") {
-            if (searchQuary.searchQuaryOrder === "startDate") {
-                const sortByAiredDate = filterMovies.sort((x, y) => x.date.replaceAll("-", "") - y.date.replaceAll("-", ""));
-                filterMovies = sortByAiredDate;
-            }
-            if (searchQuary.searchQuaryOrder === "startTime") {
-                const sortByAiredTime = filterMovies.sort((x, y) => x.time.replace(":", "") - y.time.replace(":", ""));
-                filterMovies = sortByAiredTime;
-        }}
-
-        if (searchQuary.searchQuaryAried === false) {
-            const afterAiredDate = filterMovies.filter(movie => movie.date >= timeStamp.date);
-            filterMovies = afterAiredDate;
-        }
-        if (searchQuary.searchQuarySeats === false) {
-            const afterUnbooked = filterMovies.filter(movie => movie.seats.includes(true))
-            filterMovies = afterUnbooked;
-        }
- 
-        if (searchQuary.searchQuaryText !== "" || searchQuary.searchQuaryDate !== "") {
-            const afterSearchQuary = filterMovies.filter(movie => movie.movieName.toLowerCase().includes(searchQuary.searchQuaryText) && movie.date.includes(searchQuary.searchQuaryDate));
-            filterMovies = afterSearchQuary;
-        }
-        if (searchQuary.searchQuaryTime !== "") {
-            const afterTime = filterMovies.filter(movie => movie.time >= searchQuary.searchQuaryTime);
-            filterMovies = afterTime;
-        }
-        if (filterMovies.length === 0) {
-            return false;
-        }
-        return filterMovies;
+    if (removeAlreadyAired) {
+        newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.date >= timeStamp.date);
     }
 
-    let arrayOfMovies = filterMovies(fetchedMovies, timeStamp, searchQuary)
+    // TODO SOLVE THIS
+    // function functionvalidateObjectViaTime(movieObject) {
+    //     return movieObject.date === timeStamp.date ? movieObject.time.replace(":", "") >= String(timeStamp.time.replace(":", "")) : "" ;
+    //   }
+
+    // console.log(newArrayOfMoviesAfterFiltering.filter(movie => movie.date >= timeStamp.date && movie.date === timeStamp.date ? movie.time.replace(":", "") >= String(timeStamp.time.replace(":", "")) : ""));
+    // if (removeAlreadyAired) {
+
+    //     newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.date >= timeStamp.date && validateObjectViaTime(movie));
+    // }
+
+
+
+
+    if (removeFullSeats) {
+        newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.seats.includes(true));
+    }
+
+    if (queryTitle) {
+        newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.movieName.toLowerCase().includes(queryTitle));
+    }
+
+    if (queryDate) {
+        newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.date.includes(queryDate));
+    }
+
+    if (queryTime) {
+        newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.time >= queryTime);
+    }
+
+    if (querySort !== "showAll") {
+        if (querySort === "startDate") {
+            newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.sort((x, y) => x.date.replaceAll("-", "") - y.date.replaceAll("-", ""));
+        }
+        if (querySort === "startTime") {
+            newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.sort((x, y) => x.time.replace(":", "") - y.time.replace(":", ""));
+        }
+    }
+
+    if (newArrayOfMoviesAfterFiltering.length === 0) {
+        newArrayOfMoviesAfterFiltering = false;
+    }
+
+    // DeBugging... console.log(newArrayOfMoviesAfterFiltering) console.log(
+    // queryTitle,     queryDate,     queryTime,     querySort,
+    // removeAlreadyAired,     removeFullSeats);
+
+    // TODO Make sure time works as well
+    // console.log( String(timeStamp.time.replace(":", "")));
+    // console.log(newArrayOfMoviesAfterFiltering.filter(movie => movie.time.replace(":", "") >= String(timeStamp.time.replace(":", ""))))
+    // console.log(newArrayOfMoviesAfterFiltering);
 
     return (
         <section className="listingContainer">
-            {arrayOfMovies
-                ? arrayOfMovies.map(movieObject => <MovieCard
-                    key={movieObject.id}
-                    movieObject={movieObject}
+            {newArrayOfMoviesAfterFiltering
+                ? newArrayOfMoviesAfterFiltering.map(movie => <MovieCard
+                    key={movie.id}
+                    movie={movie}
                     timeStamp={timeStamp}
                     setBookingObject={setBookingObject}
                     setMessage={setMessage}/>)

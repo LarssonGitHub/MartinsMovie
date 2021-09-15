@@ -22,9 +22,9 @@ export default function Listings({fetchedMovies, timeStamp, setBookingObject, se
     return (
         <section className="listingContainer">
             {arrayOfMovies
-                ? arrayOfMovies.map(movieObject => <MovieCard
-                    key={movieObject.id}
-                    movieObject={movieObject}
+                ? arrayOfMovies.map(movie => <MovieCard
+                    key={movie.id}
+                    movie={movie}
                     timeStamp={timeStamp}
                     setBookingObject={setBookingObject}
                     setMessage={setMessage}/>)
