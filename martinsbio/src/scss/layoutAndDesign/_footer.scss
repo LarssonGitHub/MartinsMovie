@@ -1,5 +1,5 @@
 footer {
-    @include gradientBackgroundColor($primaryContainerColor, $secondaryContainerColor, right);
+    @include gradientBackgroundColor($primaryContainerColor, $secondaryContainerColor);
         .footerContainer {
             padding: 1.5rem 0.5rem;
             .footerContacts {

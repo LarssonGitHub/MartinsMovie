@@ -1,5 +1,5 @@
-@mixin gradientBackgroundColor($primary, $secondary, $directionOfgradient) {
+@mixin gradientBackgroundColor($primary, $secondary) {
     background-color: $primary;
-    background-image: linear-gradient(to bottom $directionOfgradient, $primary, $secondary);
+    background-image: linear-gradient($primary, $secondary);
   }
 

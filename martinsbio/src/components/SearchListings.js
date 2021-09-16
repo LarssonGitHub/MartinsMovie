@@ -14,22 +14,12 @@ export default function Listings({fetchedMovies, timeStamp, searchQuery, setBook
     } = searchQuery;
 
     if (removeAlreadyAired) {
-        newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.date >= timeStamp.date);
+        function checkIfTimeOnCurrentDayHasPassed(movieObject) {
+            return movieObject.date === timeStamp.date ? movieObject.time.replace(":", "") >= timeStamp.time
+                .replace(":", "") : movieObject ;
+        }
+        newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.date >= timeStamp.date && checkIfTimeOnCurrentDayHasPassed(movie));
     }
-
-    // TODO SOLVE THIS
-    // function functionvalidateObjectViaTime(movieObject) {
-    //     return movieObject.date === timeStamp.date ? movieObject.time.replace(":", "") >= String(timeStamp.time.replace(":", "")) : "" ;
-    //   }
-
-    // console.log(newArrayOfMoviesAfterFiltering.filter(movie => movie.date >= timeStamp.date && movie.date === timeStamp.date ? movie.time.replace(":", "") >= String(timeStamp.time.replace(":", "")) : ""));
-    // if (removeAlreadyAired) {
-
-    //     newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.date >= timeStamp.date && validateObjectViaTime(movie));
-    // }
-
-
-
 
     if (removeFullSeats) {
         newArrayOfMoviesAfterFiltering = newArrayOfMoviesAfterFiltering.filter(movie => movie.seats.includes(true));
@@ -59,15 +49,6 @@ export default function Listings({fetchedMovies, timeStamp, searchQuery, setBook
     if (newArrayOfMoviesAfterFiltering.length === 0) {
         newArrayOfMoviesAfterFiltering = false;
     }
-
-    // DeBugging... console.log(newArrayOfMoviesAfterFiltering) console.log(
-    // queryTitle,     queryDate,     queryTime,     querySort,
-    // removeAlreadyAired,     removeFullSeats);
-
-    // TODO Make sure time works as well
-    // console.log( String(timeStamp.time.replace(":", "")));
-    // console.log(newArrayOfMoviesAfterFiltering.filter(movie => movie.time.replace(":", "") >= String(timeStamp.time.replace(":", ""))))
-    // console.log(newArrayOfMoviesAfterFiltering);
 
     return (
         <section className="listingContainer">

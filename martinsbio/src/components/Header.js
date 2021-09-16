@@ -8,16 +8,23 @@ export default function Header() {
 
     const handleToggle = () => {
         setNavbarOpen(prev => !prev)
+
     }
 
     return (
         <header>
-            <span onClick={handleToggle}>{navbarOpen
-                    ? "exit..."
-                    : "Hamburger"}</span>
-            <nav  onClick={handleToggle} className={`menuNav ${navbarOpen
-                    ? " showMenu"
-                    : ""}`}>
+            <div onClick={handleToggle} className={`hamburger ${navbarOpen
+                ? "active"
+                : ""}`}>
+                    <span className={"bar"}></span>
+                    <span className={"bar"}></span>
+                    <span className={"bar"}></span>
+                </div>
+            <nav
+                onClick={handleToggle}
+                className={`menuNav ${navbarOpen
+                ? " showMenu"
+                : ""}`}>
                 <ul className="removeListDecoration">
                     <li>
                         <Link to="/">Home</Link>

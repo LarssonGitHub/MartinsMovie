@@ -30,7 +30,7 @@ export default function MovieCard({movie, timeStamp, setBookingObject, setMessag
             setMessage("No seats dear..");
             return;
         }
-        if (date < timeStamp.date) {
+        if (date < timeStamp.date || (date === timeStamp.date && time <= timeStamp.time)) {
             setMessage("Movie is already over");
             return;
         }
@@ -42,20 +42,24 @@ export default function MovieCard({movie, timeStamp, setBookingObject, setMessag
     return (
 
         <section className="movieCard" onClick={() => redriectToBooking()}>
-            {date < timeStamp.date || totalSeats <= 0 || !totalSeats
+            {date < timeStamp.date || totalSeats <= 0 || !totalSeats || (date === timeStamp.date && time <= timeStamp.time)
                 ? <div className="greyedOut"></div>
                 : ""}
             {img
-                ? <img  className="movieCardImg" src={img} alt={movieName} width="200"></img>
-                : <img  className="movieCardImg"  src={'./assets/no_image.jpeg'} alt={movieName} width="200"></img>}
+                ? <img className="movieCardImg" src={img} alt={movieName} width="200"></img>
+                : <img
+                    className="movieCardImg"
+                    src={'./assets/no_image.jpeg'}
+                    alt={movieName}
+                    width="200"></img>}
             <div className={"movieCardDesc"}>
-            <h3>{movieName}</h3>
-            <p>Playing: {date}
-            </p>
-            <p>Starts: {time}</p>
-            {totalSeats
-                ? <p>Seats left: {totalSeats}</p>
-                : <p>Fully booked</p>
+                <h3>{movieName}</h3>
+                <p>Playing: {date}
+                </p>
+                <p>Starts: {time}</p>
+                {totalSeats
+                    ? <p>Seats left: {totalSeats}</p>
+                    : <p>Fully booked</p>
 }
             </div>
         </section>

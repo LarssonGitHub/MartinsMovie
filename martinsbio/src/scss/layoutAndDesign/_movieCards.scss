@@ -1,10 +1,11 @@
-// .listingContainer {
+//  TODO for mobile....
+//  .listingContainer {
 //     display: grid;
 //     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 //     gap: 1rem;
 //     .movieCard {
 //         position: relative;
-//         background-color: red;
+//         background-color: white;
 //         .greyedOut {
 //             position: absolute;
 //             top: 0;
@@ -20,7 +21,16 @@
 //             // object-fit: cover;
 //         }
 //         .movieCardDesc {
-
+//             //dubbelt så mycket margin uppot som neråt
+//             h3 {
+//                 margin-top: 0.8rem;
+//                 margin-bottom: 0.4rem;
+//             }
+//             padding: 1rem;
+//             p {
+//                 margin: 0;
+//                 margin-bottom: 0.2rem;
+//             }
 //         }
 //     }
 // }
@@ -64,6 +74,14 @@
             left: 0;
             z-index: 1;
             background-image: linear-gradient(to top, rgba(0,0,0,0), $secondaryContainerColor);
+            h3 {
+                margin-top: 0.8rem;
+                margin-bottom: 0.4rem;
+            }
+            padding: 1rem;
+            p {
+                margin: 0 0 0.2rem;
+            }
         }
     }
 }
@@ -71,7 +89,7 @@
 $breakpoint-medium: 992px;
 @media screen and (min-width: $breakpoint-medium) {
     .listingContainer {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 20%));
     }
 }
 
