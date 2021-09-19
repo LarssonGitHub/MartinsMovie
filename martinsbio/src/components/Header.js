@@ -7,7 +7,7 @@ export default function Header() {
         setNavbarOpen] = useState(false)
 
     const handleToggle = () => {
-        setNavbarOpen(prev => !prev)
+        setNavbarOpen(prev => !prev) //den här variabeln hade jag döpt till isOpen
 
     }
 
@@ -20,6 +20,9 @@ export default function Header() {
                     <span className={"bar"}></span>
                     <span className={"bar"}></span>
                 </div>
+                {
+                //Jag förstår inte genom att läsa koden vad de tre span elementen gör för nytta
+            }
             <nav
                 onClick={handleToggle}
                 className={`menuNav ${navbarOpen

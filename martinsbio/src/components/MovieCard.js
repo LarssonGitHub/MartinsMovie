@@ -50,7 +50,7 @@ export default function MovieCard({movie, timeStamp, setBookingObject, setMessag
                 : <img
                     className="movieCardImg"
                     src={'./assets/no_image.jpeg'}
-                    alt={movieName}
+                    alt={movieName} //Bra med alt tagg!
                     width="200"></img>}
             <div className={"movieCardDesc"}>
                 <h3>{movieName}</h3>
