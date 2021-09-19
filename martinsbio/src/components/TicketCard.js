@@ -45,7 +45,7 @@ export default function TicketCard({bookingObject, setBookingObject, setMessage}
     }
 
     const bookSeating = (seatingIndex) => {
-        const newSeats = [...totalSeats];
+        const newSeats = [...totalSeats]; 
         if (newSeats[seatingIndex] === false) {
             return setMessage("How did you do that?");
         }
@@ -66,6 +66,7 @@ export default function TicketCard({bookingObject, setBookingObject, setMessage}
 
     function validateOrder() {
         try {
+            // Jag skulle använda Swich eller else if istället för if, if.
             if (tickets !== 0) {
                 throw new Error("User still has tickets");
             }

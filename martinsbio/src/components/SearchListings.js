@@ -12,9 +12,9 @@ export default function Listings({fetchedMovies, timeStamp, searchQuery, setBook
         removeAlreadyAired,
         removeFullSeats
     } = searchQuery;
-
+// Går det här att göra med en swich statement istället?
     if (removeAlreadyAired) {
-        function checkIfTimeOnCurrentDayHasPassed(movieObject) {
+        function checkIfTimeOnCurrentDayHasPassed(movieObject) { //Bra funktionsnamn!
             return movieObject.date === timeStamp.date ? movieObject.time.replace(":", "") >= timeStamp.time
                 .replace(":", "") : movieObject ;
         }

@@ -1,0 +1,7 @@
+
+Bra jobbat!
+
+Det fungerar så när som på att det inte kommer någon "tack för din bokning" sida.
+Det var inget krav för uppgiften men snyggt om det skulle användas som CV projekt.
+Jag tror att du skulle trivas i typescript. Då behöver du inte döpa variabler till t.ex movieObject
+Jag har för mig att jag gillade den här: https://scrimba.com/learn/intrototypescript
